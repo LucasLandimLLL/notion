@@ -35,7 +35,7 @@ export default function Barralateral() {
               <SheetHeader>
                 <SheetTitle>Menu</SheetTitle>
                 <div>
-                  {/* Options */}
+                  {/* opções */}
                 </div>
             </SheetHeader>
           </SheetContent>
