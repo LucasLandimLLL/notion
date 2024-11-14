@@ -4,7 +4,7 @@ import { SignedIn, SignedOut, SignInButton, UserButton, useUser } from "@clerk/n
 
 export default function Header() {
   const { user } = useUser();
-
+// biblioteca clerk para login e etc
   return (
     <div className="flex items-center justify-between p-5">
       {user && (
