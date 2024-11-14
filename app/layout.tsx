@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Header from "@/components/Header";
-import Barralateral from "@/components/Barralateral";
+import Barralateral from "@/components/Barralateral.tsx";
 
 export const metadata: Metadata = {
   title: "Create Next App",
