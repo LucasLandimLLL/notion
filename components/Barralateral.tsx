@@ -3,18 +3,18 @@
 import { MenuIcon } from "lucide-react";
 import NovoDocumentoButton from "./NovoDocumentoButton";
 import { useCollection } from "react-firebase-hooks/firestore";
-
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
 import { useUser } from "@clerk/nextjs";
 import { collectionGroup, query, where, DocumentData } from "firebase/firestore";
 import { db } from "@/firebase";
 import { useEffect, useState } from "react";
+import SidebarOption from "./SidebarOption";
 
 interface RoomDocument extends DocumentData {
   createdAt: string;
@@ -75,7 +75,7 @@ export default function Barralateral() {
   const menuOptions = (
     <>
       <NovoDocumentoButton />
-      <div>
+      <div className="flex py-4 flex-col space-y-4 md:max-w-36">
         {/* Meus Documentos */}
         {groupedData.owner.length === 0 ? (
           <h2 className="text-gray-500 font-semibold text-sm">
@@ -83,21 +83,23 @@ export default function Barralateral() {
           </h2>
         ) : (
           <>
-            <h2 className="text-gray-500 font-semibold text-sm">
-              Meus documentos
-            </h2>
+            <h2 className="text-gray-500 font-semibold text-sm">Meus documentos</h2>
             {groupedData.owner.map((doc) => (
-              // Adicionando a key para cada item mapeado
-              <p key={doc.id}>{doc.roomId}</p>
+              <SidebarOption key={doc.id} id={doc.id} href={`/doc/${doc.id}`} />
             ))}
           </>
         )}
       </div>
 
-      {/* Lista */}
-
       {/* Compartilhado comigo */}
-      {/* Lista */}
+      {groupedData.editor.length > 0 && (
+        <>
+          <h2 className="text-gray-500 font-semibold text-sm">Compartilhado comigo</h2>
+          {groupedData.editor.map((doc) => (
+            <SidebarOption key={doc.id} id={doc.id} href={`/doc/${doc.id}`} />
+          ))}
+        </>
+      )}
     </>
   );
 
@@ -118,23 +120,9 @@ export default function Barralateral() {
         </Sheet>
       </div>
 
-      {/* Botão Novo Documento no Layout Desktop */}
-      <div className="hidden md:inline">
-        <NovoDocumentoButton />
-        {groupedData.owner.length === 0 ? (
-          <h2 className="text-gray-500 font-semibold text-sm">
-            Sem documentos encontrados
-          </h2>
-        ) : (
-          <>
-            <h2 className="text-gray-500 font-semibold text-sm">
-              Meus documentos
-            </h2>
-            {groupedData.owner.map((doc) => (
-              <p key={doc.id}>{doc.roomId}</p>
-            ))}
-          </>
-        )}
+      {/* Menu no Layout Desktop */}
+      <div className="hidden md:block">
+        <div>{menuOptions}</div>
       </div>
     </div>
   );

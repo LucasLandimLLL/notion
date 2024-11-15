@@ -2,7 +2,7 @@
 
 import { SignedIn, SignedOut, SignInButton, UserButton, useUser } from "@clerk/nextjs";
 
-export default function Header() {
+function Header() {
   const { user } = useUser();
 // biblioteca clerk para login e etc
   return (
@@ -10,7 +10,7 @@ export default function Header() {
       {user && (
         <h1 className="text-2xl">{user.firstName}{`'s`} Space</h1>
       )}
-
+  
       <div>
         <SignedOut>
           <SignInButton />
@@ -23,3 +23,5 @@ export default function Header() {
     </div>
   );
 }
+
+export default Header;

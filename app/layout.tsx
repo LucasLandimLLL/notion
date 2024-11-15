@@ -19,7 +19,6 @@ export default function RootLayout({
       <ClerkProvider>
         <body>
           <Header />
-
           <div className="flex min-h-screen">
             <Barralateral />
             <div className="flex-1 p-4 bg-gray-100 overflow-y-auto scrollbar-hide">
