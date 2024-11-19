@@ -11,6 +11,8 @@ import DeletarDocumento from "./DeletarDocumento";
 import ConvidarUser from "./ConvidarUser";
 import useDono from "@/lib/useDono";
 import GerenciarUsers from "./GerenciarUsers";
+import { Avatar } from "@radix-ui/react-avatar";
+import Avatars from "./Avatars";
 
 function Document({ id }: { id: string }) {
     const[data, loading, error] = useDocumentData(doc(db, "documents", id))
@@ -60,6 +62,8 @@ function Document({ id }: { id: string }) {
             <div className="flex max-w-6xl mx-auto justify-between items-center mb-5">
 
                 <GerenciarUsers />
+
+                <Avatars />
             {/* avatar*/}
 
             </div>

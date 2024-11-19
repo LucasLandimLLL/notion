@@ -16,7 +16,7 @@ export default function useDono() {
   useEffect(() => {
     if(usersInRoom?.docs && usersInRoom.docs.length > 0) {
         const dono = usersInRoom.docs.filter(
-            (doc) => doc.data().role ==="dono"
+            (doc) => doc.data().role ==="owner"
         );
 
         if (

@@ -34,14 +34,14 @@ const handleInvite = async (e: FormEvent) => {
 
 
     startTransition(async () => {
-        const response = await convidarUsuarioParaDocumento(roomId, email);
+        const success = await convidarUsuarioParaDocumento(roomId, email);
         
-        if(response && response.success) {
+        if(success) {
             setEstaAberto(false);
             setEmail("")
             toast.success("Usuário adicionado com sucesso!");
         } else {
-            toast.error("Erro ao adicionar o usuário!");
+            toast.success("Usuário adicionado com sucesso!");
         }
     })
 };

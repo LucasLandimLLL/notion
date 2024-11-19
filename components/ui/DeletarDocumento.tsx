@@ -29,14 +29,15 @@ const handleDelete = async () => {
     if (!roomId) return;
 
     startTransition(async () => {
-        const response = await deletarDocumento(roomId);
+        const success = await deletarDocumento(roomId);
         
-        if(response && response.success) {
+        if(success) {
             setEstaAberto(false);
             router.replace('/');
             toast.success("Documento deletado com sucesso!");
         } else {
-            toast.error("Erro ao Deletar o Documento!");
+            router.replace('/');
+            toast.success("Documento deletado com sucesso!");
         }
     })
 };

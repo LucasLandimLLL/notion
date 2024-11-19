@@ -28,7 +28,7 @@ export default function GerenciarUser() {
 
 const room = useRoom();
 const { user } = useUser();
-const isDono = useDono();
+const dono = useDono();
 const [estaAberto, setEstaAberto] = useState(false);
 const [isPending, startTransition] = useTransition();
 
@@ -80,7 +80,7 @@ const handleDelete = (userId: string) => {
                         <div className="flex items-center gap-2">
                             <Button variant="outline">{doc.data().role}</Button>
 
-                            {isDono &&
+                            {dono &&
                                 doc.data().userId !== user?.emailAddresses[0].toString() && (
                                     <Button
                                         variant="destructive"
@@ -88,7 +88,7 @@ const handleDelete = (userId: string) => {
                                         disabled={isPending}
                                         size="sm"
                                     >
-                                        {isPending ? "Removendo..." : "x"}
+                                        {isPending ? "Removendo..." : "X"}
                                     </Button>
                             )}
                         </div>
