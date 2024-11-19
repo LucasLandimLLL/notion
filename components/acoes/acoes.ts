@@ -85,3 +85,21 @@ export async function convidarUsuarioParaDocumento(roomId: string, email: string
         return {success: false};
     }
 }
+
+export async function removerUsuarioDoDocumento(roomId: string, email: string){
+    console.log("removerUsuarioDoDocumento", roomId, email);
+
+    try {
+        await adminDb
+            .collection("users")
+            .doc(email)
+            .collection("rooms")
+            .doc(roomId)
+            .delete();
+        
+        return { success: true};
+    } catch (error) {
+        console.error(error);
+        return{ success : false }
+    }
+}

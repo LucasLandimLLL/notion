@@ -10,6 +10,7 @@ import Editor from "./Editor";
 import DeletarDocumento from "./DeletarDocumento";
 import ConvidarUser from "./ConvidarUser";
 import useDono from "@/lib/useDono";
+import GerenciarUsers from "./GerenciarUsers";
 
 function Document({ id }: { id: string }) {
     const[data, loading, error] = useDocumentData(doc(db, "documents", id))
@@ -57,15 +58,13 @@ function Document({ id }: { id: string }) {
             </div>
 
             <div className="flex max-w-6xl mx-auto justify-between items-center mb-5">
-            {/* manageuser*/}
-                
+
+                <GerenciarUsers />
             {/* avatar*/}
 
             </div>
 
             <hr className="pb-10"></hr>
-
-            {/* collaborative editor*/}
 
             <Editor />
         </div>
