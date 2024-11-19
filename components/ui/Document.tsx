@@ -8,6 +8,7 @@ import { db } from "@/firebase";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import Editor from "./Editor";
 import useDono from "@/lib/useDono";
+import DeletarDocumento from "./DeletarDocumento";
 
 function Document({ id }: { id: string }) {
     const[data, loading, error] = useDocumentData(doc(db, "documents", id))
@@ -45,7 +46,7 @@ function Document({ id }: { id: string }) {
 
                 {useDono && (
                     <>
-                    <p>Adm</p>
+                        <DeletarDocumento />
                     </>
                 )}
 
