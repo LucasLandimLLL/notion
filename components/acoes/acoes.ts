@@ -63,3 +63,25 @@ export async function deletarDocumento(roomId: string) {
         return {success : false};
     }
 }
+
+export async function convidarUsuarioParaDocumento(roomId: string, email: string) {
+    console.log("convidarUsuarioParaDocumento", roomId, email);
+
+    try {
+        await adminDb
+            .collection("users")
+            .doc(email)
+            .collection("rooms")
+            .doc(roomId)
+            .set({
+                userId:email,
+                role: "editor",
+                createdAt: new Date(),
+                roomId,
+            });
+
+    } catch (error) {
+        console.error(error)
+        return {success: false};
+    }
+}

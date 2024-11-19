@@ -89,7 +89,6 @@ export default function Barralateral() {
             ))}
           </>
         )}
-      </div>
 
       {/* Compartilhado comigo */}
       {groupedData.editor.length > 0 && (
@@ -100,6 +99,7 @@ export default function Barralateral() {
           ))}
         </>
       )}
+      </div>
     </>
   );
 

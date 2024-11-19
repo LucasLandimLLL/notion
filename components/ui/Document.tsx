@@ -7,8 +7,9 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/firebase";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import Editor from "./Editor";
-import useDono from "@/lib/useDono";
 import DeletarDocumento from "./DeletarDocumento";
+import ConvidarUser from "./ConvidarUser";
+import useDono from "@/lib/useDono";
 
 function Document({ id }: { id: string }) {
     const[data, loading, error] = useDocumentData(doc(db, "documents", id))
@@ -46,6 +47,7 @@ function Document({ id }: { id: string }) {
 
                 {useDono && (
                     <>
+                        <ConvidarUser />
                         <DeletarDocumento />
                     </>
                 )}
@@ -54,9 +56,9 @@ function Document({ id }: { id: string }) {
                 </form>
             </div>
 
-            <div>
+            <div className="flex max-w-6xl mx-auto justify-between items-center mb-5">
             {/* manageuser*/}
-
+                
             {/* avatar*/}
 
             </div>
