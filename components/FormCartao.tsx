@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect } from "react";
-import { Form, Button } from "react-bootstrap";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Yup from "yup";
 import { useFormik } from "formik";
@@ -115,167 +114,180 @@ export default function FormPagamento() {
   };
 
   return (
-    <Form onSubmit={formik.handleSubmit}>
-      <Form.Group controlId="cvv">
-        <Form.Label>CVV</Form.Label>
-        <Form.Control
+    <form onSubmit={formik.handleSubmit} className="space-y-4">
+      <div>
+        <label htmlFor="cvv" className="block text-sm font-semibold text-gray-700">
+          CVV
+        </label>
+        <input
           type="text"
           name="cvv"
           maxLength={3}
           value={formik.values.cvv}
           onChange={(e) => formik.setFieldValue("cvv", formatCVV(e.target.value))}
-          isInvalid={formik.touched.cvv && formik.errors.cvv}
-          disabled={!isEditing} // Desabilitar campo se não estiver em edição
+          className="mt-2 p-2 w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+          disabled={!isEditing}
         />
-        <Form.Control.Feedback type="invalid">
-          {formik.errors.cvv}
-        </Form.Control.Feedback>
-      </Form.Group>
+        {formik.touched.cvv && formik.errors.cvv && (
+          <div className="text-red-500 text-xs mt-1">{formik.errors.cvv}</div>
+        )}
+      </div>
 
-      <Form.Group controlId="numeroCartao">
-        <Form.Label>Número do Cartão</Form.Label>
-        <Form.Control
+      <div>
+        <label htmlFor="numeroCartao" className="block text-sm font-semibold text-gray-700">
+          Número do Cartão
+        </label>
+        <input
           type="text"
           name="numeroCartao"
-          maxLength={16} // Campo de 16 dígitos sem máscara
+          maxLength={16}
           value={formik.values.numeroCartao}
           onChange={(e) => formik.setFieldValue("numeroCartao", formatNumeroCartao(e.target.value))}
-          isInvalid={formik.touched.numeroCartao && formik.errors.numeroCartao}
-          disabled={!isEditing} // Desabilitar campo se não estiver em edição
+          className="mt-2 p-2 w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+          disabled={!isEditing}
         />
-        <Form.Control.Feedback type="invalid">
-          {formik.errors.numeroCartao}
-        </Form.Control.Feedback>
-      </Form.Group>
+        {formik.touched.numeroCartao && formik.errors.numeroCartao && (
+          <div className="text-red-500 text-xs mt-1">{formik.errors.numeroCartao}</div>
+        )}
+      </div>
 
-      <Form.Group controlId="nomeCartao">
-        <Form.Label>Nome no Cartão</Form.Label>
-        <Form.Control
+      <div>
+        <label htmlFor="nomeCartao" className="block text-sm font-semibold text-gray-700">
+          Nome no Cartão
+        </label>
+        <input
           type="text"
           name="nomeCartao"
           value={formik.values.nomeCartao}
           onChange={formik.handleChange}
-          isInvalid={formik.touched.nomeCartao && formik.errors.nomeCartao}
-          disabled={!isEditing} // Desabilitar campo se não estiver em edição
+          className="mt-2 p-2 w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+          disabled={!isEditing}
         />
-        <Form.Control.Feedback type="invalid">
-          {formik.errors.nomeCartao}
-        </Form.Control.Feedback>
-      </Form.Group>
+        {formik.touched.nomeCartao && formik.errors.nomeCartao && (
+          <div className="text-red-500 text-xs mt-1">{formik.errors.nomeCartao}</div>
+        )}
+      </div>
 
-      <Form.Group controlId="cpf">
-        <Form.Label>CPF</Form.Label>
-        <Form.Control
+      <div>
+        <label htmlFor="cpf" className="block text-sm font-semibold text-gray-700">
+          CPF
+        </label>
+        <input
           type="text"
           name="cpf"
           maxLength={14}
           value={formik.values.cpf}
           onChange={(e) => formik.setFieldValue("cpf", formatCPF(e.target.value))}
-          isInvalid={formik.touched.cpf && formik.errors.cpf}
-          disabled={!isEditing} // Desabilitar campo se não estiver em edição
+          className="mt-2 p-2 w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+          disabled={!isEditing}
         />
-        <Form.Control.Feedback type="invalid">
-          {formik.errors.cpf}
-        </Form.Control.Feedback>
-      </Form.Group>
+        {formik.touched.cpf && formik.errors.cpf && (
+          <div className="text-red-500 text-xs mt-1">{formik.errors.cpf}</div>
+        )}
+      </div>
 
-      <Form.Group controlId="validade">
-        <Form.Label>Validade</Form.Label>
-        <Form.Control
+      <div>
+        <label htmlFor="validade" className="block text-sm font-semibold text-gray-700">
+          Validade
+        </label>
+        <input
           type="text"
           name="validade"
           maxLength={5}
           value={formik.values.validade}
           onChange={(e) => formik.setFieldValue("validade", formatValidade(e.target.value))}
-          isInvalid={formik.touched.validade && formik.errors.validade}
-          disabled={!isEditing} // Desabilitar campo se não estiver em edição
+          className="mt-2 p-2 w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+          disabled={!isEditing}
         />
-        <Form.Control.Feedback type="invalid">
-          {formik.errors.validade}
-        </Form.Control.Feedback>
-      </Form.Group>
+        {formik.touched.validade && formik.errors.validade && (
+          <div className="text-red-500 text-xs mt-1">{formik.errors.validade}</div>
+        )}
+      </div>
 
-      <Form.Group controlId="metodoPagamento">
-        <Form.Label>Método de Pagamento</Form.Label>
-        <Form.Control
-          as="select"
+      <div>
+        <label htmlFor="metodoPagamento" className="block text-sm font-semibold text-gray-700">
+          Método de Pagamento
+        </label>
+        <select
           name="metodoPagamento"
           value={formik.values.metodoPagamento}
           onChange={formik.handleChange}
-          isInvalid={formik.touched.metodoPagamento && formik.errors.metodoPagamento}
-          disabled={!isEditing} // Desabilitar campo se não estiver em edição
+          className="mt-2 p-2 w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+          disabled={!isEditing}
         >
           <option value="" disabled>
             Selecione uma opção
           </option>
           <option value="debito">Débito</option>
           <option value="credito">Crédito</option>
-        </Form.Control>
-        <Form.Control.Feedback type="invalid">
-          {formik.errors.metodoPagamento}
-        </Form.Control.Feedback>
-      </Form.Group>
+        </select>
+        {formik.touched.metodoPagamento && formik.errors.metodoPagamento && (
+          <div className="text-red-500 text-xs mt-1">{formik.errors.metodoPagamento}</div>
+        )}
+      </div>
 
-      <Form.Group controlId="enderecoCobertura">
-        <Form.Label>Endereço de Cobrança</Form.Label>
-        <Form.Control
+      <div>
+        <label htmlFor="enderecoCobertura" className="block text-sm font-semibold text-gray-700">
+          Endereço de Cobrança
+        </label>
+        <input
           type="text"
           name="enderecoCobertura"
           value={formik.values.enderecoCobertura}
           onChange={formik.handleChange}
-          isInvalid={formik.touched.enderecoCobertura && formik.errors.enderecoCobertura}
-          disabled={!isEditing} // Desabilitar campo se não estiver em edição
+          className="mt-2 p-2 w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+          disabled={!isEditing}
         />
-        <Form.Control.Feedback type="invalid">
-          {formik.errors.enderecoCobertura}
-        </Form.Control.Feedback>
-      </Form.Group>
+        {formik.touched.enderecoCobertura && formik.errors.enderecoCobertura && (
+          <div className="text-red-500 text-xs mt-1">{formik.errors.enderecoCobertura}</div>
+        )}
+      </div>
 
-      <Form.Group controlId="tornarCartaoPadrao">
-        <Form.Label>Tornar Cartão Padrão para Próximas Compras?</Form.Label>
-        <Form.Control
-          as="select"
+      <div>
+        <label htmlFor="tornarCartaoPadrao" className="block text-sm font-semibold text-gray-700">
+          Tornar Cartão Padrão para Próximas Compras?
+        </label>
+        <select
           name="tornarCartaoPadrao"
           value={formik.values.tornarCartaoPadrao}
           onChange={formik.handleChange}
-          isInvalid={formik.touched.tornarCartaoPadrao && formik.errors.tornarCartaoPadrao}
-          disabled={!isEditing} // Desabilitar campo se não estiver em edição
+          className="mt-2 p-2 w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+          disabled={!isEditing}
         >
           <option value="" disabled>
             Selecione uma opção
           </option>
           <option value="sim">Sim</option>
           <option value="nao">Não</option>
-        </Form.Control>
-        <Form.Control.Feedback type="invalid">
-          {formik.errors.tornarCartaoPadrao}
-        </Form.Control.Feedback>
-      </Form.Group>
+        </select>
+        {formik.touched.tornarCartaoPadrao && formik.errors.tornarCartaoPadrao && (
+          <div className="text-red-500 text-xs mt-1">{formik.errors.tornarCartaoPadrao}</div>
+        )}
+      </div>
 
-      <Button variant="primary" type="submit" className="mt-3" disabled={!isEditing}>
-        Salvar
-      </Button>
-
-      <Button
-        variant="danger"
-        type="button"
-        onClick={handleDelete}
-        className="mt-3 ms-3"
-      >
-        Excluir
-      </Button>
-
-      {/* Botão para modificar os dados */}
-      {!isEditing && (
-        <Button
-          variant="warning"
+      <div className="flex space-x-3">
+        <button type="submit" className="py-2 px-4 bg-blue-500 text-white rounded-md" disabled={!isEditing}>
+          Salvar
+        </button>
+        <button
           type="button"
-          onClick={handleModify}
-          className="mt-3 ms-3"
+          onClick={handleDelete}
+          className="py-2 px-4 bg-red-500 text-white rounded-md"
         >
-          Modificar
-        </Button>
-      )}
-    </Form>
+          Excluir
+        </button>
+
+        {/* Botão para modificar os dados */}
+        {!isEditing && (
+          <button
+            type="button"
+            onClick={handleModify}
+            className="py-2 px-4 bg-yellow-500 text-white rounded-md"
+          >
+            Modificar
+          </button>
+        )}
+      </div>
+    </form>
   );
 }

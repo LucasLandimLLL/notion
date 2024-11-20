@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect } from "react";
-import { Form, Button } from "react-bootstrap";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Yup from "yup";
 import { useFormik } from "formik";
@@ -110,27 +109,31 @@ export default function FormPagamentoPlano() {
   };
 
   return (
-    <Form onSubmit={formik.handleSubmit}>
-      <Form.Group controlId="valorPlano">
-        <Form.Label>Valor do Plano</Form.Label>
-        <Form.Control
+    <form onSubmit={formik.handleSubmit} className="space-y-6">
+      <div>
+        <label htmlFor="valorPlano" className="block text-sm font-medium text-gray-700">
+          Valor do Plano
+        </label>
+        <input
           type="text"
           name="valorPlano"
           value={formik.values.valorPlano}
           onChange={(e) =>
             formik.setFieldValue("valorPlano", formatValor(e.target.value))
           }
-          isInvalid={formik.touched.valorPlano && formik.errors.valorPlano}
+          className={`mt-1 p-2 w-full border ${formik.touched.valorPlano && formik.errors.valorPlano ? 'border-red-500' : 'border-gray-300'} rounded-md focus:ring-2 focus:ring-blue-500`}
           disabled={!isEditing}
         />
-        <Form.Control.Feedback type="invalid">
-          {formik.errors.valorPlano}
-        </Form.Control.Feedback>
-      </Form.Group>
+        {formik.touched.valorPlano && formik.errors.valorPlano && (
+          <p className="text-red-500 text-xs mt-1">{formik.errors.valorPlano}</p>
+        )}
+      </div>
 
-      <Form.Group controlId="dataExpiracao">
-        <Form.Label>Data de Expiração do Contrato</Form.Label>
-        <Form.Control
+      <div>
+        <label htmlFor="dataExpiracao" className="block text-sm font-medium text-gray-700">
+          Data de Expiração do Contrato
+        </label>
+        <input
           type="text"
           name="dataExpiracao"
           maxLength={5} // DD/MM
@@ -138,17 +141,19 @@ export default function FormPagamentoPlano() {
           onChange={(e) =>
             formik.setFieldValue("dataExpiracao", formatData(e.target.value))
           }
-          isInvalid={formik.touched.dataExpiracao && formik.errors.dataExpiracao}
+          className={`mt-1 p-2 w-full border ${formik.touched.dataExpiracao && formik.errors.dataExpiracao ? 'border-red-500' : 'border-gray-300'} rounded-md focus:ring-2 focus:ring-blue-500`}
           disabled={!isEditing}
         />
-        <Form.Control.Feedback type="invalid">
-          {formik.errors.dataExpiracao}
-        </Form.Control.Feedback>
-      </Form.Group>
+        {formik.touched.dataExpiracao && formik.errors.dataExpiracao && (
+          <p className="text-red-500 text-xs mt-1">{formik.errors.dataExpiracao}</p>
+        )}
+      </div>
 
-      <Form.Group controlId="dataVencimento">
-        <Form.Label>Data de Vencimento do Pagamento</Form.Label>
-        <Form.Control
+      <div>
+        <label htmlFor="dataVencimento" className="block text-sm font-medium text-gray-700">
+          Data de Vencimento do Pagamento
+        </label>
+        <input
           type="text"
           name="dataVencimento"
           maxLength={5} // DD/MM
@@ -156,17 +161,19 @@ export default function FormPagamentoPlano() {
           onChange={(e) =>
             formik.setFieldValue("dataVencimento", formatData(e.target.value))
           }
-          isInvalid={formik.touched.dataVencimento && formik.errors.dataVencimento}
+          className={`mt-1 p-2 w-full border ${formik.touched.dataVencimento && formik.errors.dataVencimento ? 'border-red-500' : 'border-gray-300'} rounded-md focus:ring-2 focus:ring-blue-500`}
           disabled={!isEditing}
         />
-        <Form.Control.Feedback type="invalid">
-          {formik.errors.dataVencimento}
-        </Form.Control.Feedback>
-      </Form.Group>
+        {formik.touched.dataVencimento && formik.errors.dataVencimento && (
+          <p className="text-red-500 text-xs mt-1">{formik.errors.dataVencimento}</p>
+        )}
+      </div>
 
-      <Form.Group controlId="dataRenovacao">
-        <Form.Label>Data de Renovação do Pagamento</Form.Label>
-        <Form.Control
+      <div>
+        <label htmlFor="dataRenovacao" className="block text-sm font-medium text-gray-700">
+          Data de Renovação do Pagamento
+        </label>
+        <input
           type="text"
           name="dataRenovacao"
           maxLength={5} // DD/MM
@@ -174,99 +181,103 @@ export default function FormPagamentoPlano() {
           onChange={(e) =>
             formik.setFieldValue("dataRenovacao", formatData(e.target.value))
           }
-          isInvalid={formik.touched.dataRenovacao && formik.errors.dataRenovacao}
+          className={`mt-1 p-2 w-full border ${formik.touched.dataRenovacao && formik.errors.dataRenovacao ? 'border-red-500' : 'border-gray-300'} rounded-md focus:ring-2 focus:ring-blue-500`}
           disabled={!isEditing}
         />
-        <Form.Control.Feedback type="invalid">
-          {formik.errors.dataRenovacao}
-        </Form.Control.Feedback>
-      </Form.Group>
+        {formik.touched.dataRenovacao && formik.errors.dataRenovacao && (
+          <p className="text-red-500 text-xs mt-1">{formik.errors.dataRenovacao}</p>
+        )}
+      </div>
 
-      <Form.Group controlId="numeroContrato">
-        <Form.Label>Número do Contrato</Form.Label>
-        <Form.Control
+      <div>
+        <label htmlFor="numeroContrato" className="block text-sm font-medium text-gray-700">
+          Número do Contrato
+        </label>
+        <input
           type="text"
           name="numeroContrato"
           value={formik.values.numeroContrato}
           onChange={(e) =>
             formik.setFieldValue("numeroContrato", formatNumeroContrato(e.target.value))
           }
-          isInvalid={formik.touched.numeroContrato && formik.errors.numeroContrato}
+          className={`mt-1 p-2 w-full border ${formik.touched.numeroContrato && formik.errors.numeroContrato ? 'border-red-500' : 'border-gray-300'} rounded-md focus:ring-2 focus:ring-blue-500`}
           disabled={!isEditing}
         />
-        <Form.Control.Feedback type="invalid">
-          {formik.errors.numeroContrato}
-        </Form.Control.Feedback>
-      </Form.Group>
+        {formik.touched.numeroContrato && formik.errors.numeroContrato && (
+          <p className="text-red-500 text-xs mt-1">{formik.errors.numeroContrato}</p>
+        )}
+      </div>
 
-      <Form.Group controlId="tipoPagamento">
-        <Form.Label>Tipo de Pagamento</Form.Label>
-        <Form.Control
-          as="select"
+      <div>
+        <label htmlFor="tipoPagamento" className="block text-sm font-medium text-gray-700">
+          Tipo de Pagamento
+        </label>
+        <select
           name="tipoPagamento"
           value={formik.values.tipoPagamento}
           onChange={formik.handleChange}
-          isInvalid={formik.touched.tipoPagamento && formik.errors.tipoPagamento}
+          className={`mt-1 p-2 w-full border ${formik.touched.tipoPagamento && formik.errors.tipoPagamento ? 'border-red-500' : 'border-gray-300'} rounded-md focus:ring-2 focus:ring-blue-500`}
           disabled={!isEditing}
         >
-          <option value="" disabled>
-            Selecione uma opção
-          </option>
+          <option value="" disabled>Selecione uma opção</option>
           <option value="mensal">Mensal</option>
           <option value="anual">Anual</option>
           <option value="semestral">Semestral</option>
-        </Form.Control>
-        <Form.Control.Feedback type="invalid">
-          {formik.errors.tipoPagamento}
-        </Form.Control.Feedback>
-      </Form.Group>
+        </select>
+        {formik.touched.tipoPagamento && formik.errors.tipoPagamento && (
+          <p className="text-red-500 text-xs mt-1">{formik.errors.tipoPagamento}</p>
+        )}
+      </div>
 
-      <Form.Group controlId="cartaoUsado">
-        <Form.Label>Cartão Usado para Pagamento</Form.Label>
-        <Form.Control
-          as="select"
+      <div>
+        <label htmlFor="cartaoUsado" className="block text-sm font-medium text-gray-700">
+          Cartão Usado para Pagamento
+        </label>
+        <select
           name="cartaoUsado"
           value={formik.values.cartaoUsado}
           onChange={formik.handleChange}
-          isInvalid={formik.touched.cartaoUsado && formik.errors.cartaoUsado}
+          className={`mt-1 p-2 w-full border ${formik.touched.cartaoUsado && formik.errors.cartaoUsado ? 'border-red-500' : 'border-gray-300'} rounded-md focus:ring-2 focus:ring-blue-500`}
           disabled={!isEditing}
         >
-          <option value="" disabled>
-            Selecione uma opção
-          </option>
+          <option value="" disabled>Selecione uma opção</option>
           <option value="visa">Visa</option>
           <option value="mastercard">MasterCard</option>
           <option value="amex">American Express</option>
           <option value="elo">Elo</option>
-        </Form.Control>
-        <Form.Control.Feedback type="invalid">
-          {formik.errors.cartaoUsado}
-        </Form.Control.Feedback>
-      </Form.Group>
+        </select>
+        {formik.touched.cartaoUsado && formik.errors.cartaoUsado && (
+          <p className="text-red-500 text-xs mt-1">{formik.errors.cartaoUsado}</p>
+        )}
+      </div>
 
-      <Button variant="primary" type="submit" className="mt-3" disabled={!isEditing}>
-        Salvar
-      </Button>
-
-      <Button
-        variant="danger"
-        type="button"
-        onClick={handleDelete}
-        className="mt-3 ms-3"
-      >
-        Excluir
-      </Button>
-
-      {!isEditing && (
-        <Button
-          variant="warning"
-          type="button"
-          onClick={handleModify}
-          className="mt-3 ms-3"
+      <div className="flex space-x-4 mt-4">
+        <button
+          type="submit"
+          className={`px-4 py-2 rounded-md text-white ${isEditing ? 'bg-blue-500' : 'bg-gray-400'} focus:ring-2 focus:ring-blue-500`}
+          disabled={!isEditing}
         >
-          Modificar
-        </Button>
-      )}
-    </Form>
+          Salvar
+        </button>
+
+        <button
+          type="button"
+          onClick={handleDelete}
+          className="px-4 py-2 rounded-md text-white bg-red-500 focus:ring-2 focus:ring-red-500"
+        >
+          Excluir
+        </button>
+
+        {!isEditing && (
+          <button
+            type="button"
+            onClick={handleModify}
+            className="px-4 py-2 rounded-md text-white bg-yellow-500 focus:ring-2 focus:ring-yellow-500"
+          >
+            Modificar
+          </button>
+        )}
+      </div>
+    </form>
   );
 }
